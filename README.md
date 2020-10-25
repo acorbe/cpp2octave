@@ -18,37 +18,36 @@ My library [Autogpy](https://github.com/acorbe/autogpy) follows loosely the same
 The following cpp code
 
 ```cpp
-	// An octave script named "myOct.m" will be initialized in the default path.
-	// A directory named support_myOct will be created as well to contain data and support files.
-	cpp2octave::cpp2oct myCore("myOct");
+// An octave script named "myOct.m" will be initialized in the default path.
+// A directory named support_myOct will be created as well to contain data and support files.
+cpp2octave::cpp2oct myCore("myOct");
 
-	// "Hello world!" is displayed by the console
-	myCore.f_disp("Hello World!");
-	// RESULT in myOct.m: disp( 'Hello World!' );
+// "Hello world!" is displayed by the console
+myCore.f_disp("Hello World!");
+// RESULT in myOct.m: disp( 'Hello World!' );
 
-	// The latter is indeed a shortcut of the more general call
-	myCore.oct_f_call("disp","Hello World! 2");
-	// RESULT in myOct.m: disp( 'Hello World!' );
+// The latter is indeed a shortcut of the more general call
+myCore.oct_f_call("disp","Hello World! 2");
+// RESULT in myOct.m: disp( 'Hello World!' );
 
-	// You can instantiate octave objects, as the following object "ob".
-	// "Ob" will serve as an handler/pointer to the octave object "obj0_" automatically created. Indeed you don't need to consider "obj0_", in the cpp side you will use just "ob".
-	c2o_obj ob = myCore.oct_new_obj_base();
-	
-	// You can ask octave to calculate a 3x3 random matrix and to assign it to the object handled by ob.
-	myCore.oct_f_call(ob,"rand",3);
-	// RESULT in myOct.m: obj0_ = rand( 3 );
-	//
-	// Let's display the matrix
-	myCore.f_disp(ob);
-	// RESULT in myOct.m: disp( obj0_ );
-	
-	// You may want a 3x4 random matrix. Nothing easier...
-	myCore.oct_f_call(ob,"rand",3,4);
-	// RESULT in myOct.m: obj0_ = rand( 3 , 4 );
-	//
-	// Again, let's display the matrix
-	myCore.f_disp(ob);
+// You can instantiate octave objects, as the following object "ob".
+// "Ob" will serve as an handler/pointer to the octave object "obj0_" automatically created. Indeed you don't need to consider "obj0_", in the cpp side you will use just "ob".
+c2o_obj ob = myCore.oct_new_obj_base();
 
+// You can ask octave to calculate a 3x3 random matrix and to assign it to the object handled by ob.
+myCore.oct_f_call(ob,"rand",3);
+// RESULT in myOct.m: obj0_ = rand( 3 );
+//
+// Let's display the matrix
+myCore.f_disp(ob);
+// RESULT in myOct.m: disp( obj0_ );
+
+// You may want a 3x4 random matrix. Nothing easier...
+myCore.oct_f_call(ob,"rand",3,4);
+// RESULT in myOct.m: obj0_ = rand( 3 , 4 );
+//
+// Again, let's display the matrix
+myCore.f_disp(ob);
 ```
 
 produces the octave script
